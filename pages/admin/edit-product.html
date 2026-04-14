@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Namā | Edit Product</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="logo">Namā Admin</div>
+  <nav class="nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="products.html">Products</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="products-hero">
+  <div class="overlay"></div>
+  <div class="products-hero-content">
+    <h1>Edit Product</h1>
+    <p>Update product</p>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="products-section">
+
+  <div class="form-container">
+
+    <form>
+
+      <div class="form-group">
+        <label>Product Name</label>
+        <input type="text" id="nameInput" value="Red Roses">
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea>Beautiful red roses bouquet</textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Price (SAR)</label>
+        <input type="number" id="priceInput" value="50">
+      </div>
+
+      <div class="form-group">
+        <label>Stock</label>
+        <input type="number" value="10">
+      </div>
+
+      <div class="form-group">
+        <label>Image URL</label>
+        <input type="text" id="imgInput"
+          value="https://images.unsplash.com/photo-1541167760496-1628856ab772"
+          oninput="previewImage()">
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <select>
+          <option value="1" selected>Flowers</option>
+          <option value="2">Plants</option>
+          <option value="3">Coffee</option>
+          <option value="4">Chocolates</option>
+          <option value="5">Packages</option>
+        </select>
+      </div>
+
+      <button class="btn">Save Changes</button>
+
+      <button class="btn" style="background:#c94c4c; margin-top:10px;">
+        Delete Product
+      </button>
+
+    </form>
+
+    <!-- PREVIEW -->
+    <div class="product-card" id="previewCard" style="max-width:250px; margin-top:30px;">
+      <img id="previewImg"
+        src="https://images.unsplash.com/photo-1541167760496-1628856ab772"
+        style="width:100%; border-radius:10px;">
+      <div class="product-details">
+        <h3 id="previewName">Red Roses</h3>
+        <p>Preview</p>
+        <span id="previewPrice">50 SAR</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  <p>© 2026 Namā</p>
+</footer>
+
+<script>
+function previewImage() {
+  const url = document.getElementById("imgInput").value;
+  document.getElementById("previewImg").src = url;
+}
+
+document.getElementById("nameInput").oninput = function() {
+  document.getElementById("previewName").innerText = this.value;
+}
+
+document.getElementById("priceInput").oninput = function() {
+  document.getElementById("previewPrice").innerText = this.value + " SAR";
+}
+</script>
+
+</body>
+</html>
