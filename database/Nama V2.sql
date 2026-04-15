@@ -1,6 +1,17 @@
 CREATE DATABASE Namaa;
 USE Namaa;
 
+CREATE TABLE users (
+  user_id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role VARCHAR(50) NOT NULL
+);
+
+INSERT INTO users (username, password, role) VALUES
+('admin', '1234', 'admin'),
+('fatimah', '1234', 'user');
+
 CREATE TABLE categories (
   category_id INT AUTO_INCREMENT PRIMARY KEY,
   category_name VARCHAR(100) NOT NULL
@@ -20,8 +31,6 @@ CREATE TABLE products (
   category_id INT,
   FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
-
--- إدخال المنتجات
 
 INSERT INTO products (name, description, price, stock, image, category_id) VALUES
 
