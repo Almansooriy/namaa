@@ -34,7 +34,7 @@ CREATE TABLE products (
 
 INSERT INTO products (name, description, price, stock, image, category_id) VALUES
 
--- 🌸 Flowers (category_id = 1)
+-- Flowers (category_id = 1)
 ('Rose Bouquet', 'A timeless bouquet with soft, elegant roses.', 120, 10, 'https://www.fnp.sa/cdn/shop/files/Red_Rose_Flower_Bouquet_Fresh_Flower_Delivery_in_Saudi_Arabia_1.jpg', 1),
 ('Tulip Bouquet', 'A modern bouquet with fresh tulips.', 110, 8, 'https://www.fnp.sa/cdn/shop/files/FLTPPKWNBQRGHR.jpg', 1),
 ('Peony Bouquet', 'Luxurious peonies with a romantic feel.', 160, 6, 'https://static-assets-prod.fnp.ae/images/pr/l/v20251024221830/precious-peonies-bouquet_1.jpg', 1),
@@ -44,7 +44,7 @@ INSERT INTO products (name, description, price, stock, image, category_id) VALUE
 ('Baby’s Breath Bundle', 'Soft minimal floral bundle.', 80, 10, 'https://www.craftoutlet.com/cdn/shop/files/gypso-babys-breath-bundle-4-13344wt.jpg', 1),
 ('Sunflower Wrap', 'Bright sunflower arrangement.', 95, 8, 'https://www.fnp.sa/cdn/shop/files/20250414_1913_Sunflower_Bouquet_Display_remix_01jrth4tw4emfrwn3v5kxkettj.jpg', 1),
 
--- 🌿 Plants (category_id = 2)
+-- Plants (category_id = 2)
 ('Snake Plant', 'Low-maintenance modern plant.', 90, 12, 'https://images.plnts.com/optimize/q:80/w:3840/plain/https://webshop.plnts.com/media/catalog/product/cache/aa5d334f459227518b6c3cf7ea9d29ed/p/l/pl.l.005-2-0106.jpg', 2),
 ('Peace Lily', 'Elegant indoor plant.', 110, 10, 'https://bostan.com.sa/cdn/shop/files/peace-lily-spathiphyllum-wallisii-4510638.jpg', 2),
 ('Monstera Plant', 'Bold green modern plant.', 140, 6, 'https://webshop.plnts.com/media/catalog/product/cache/aa5d334f459227518b6c3cf7ea9d29ed/p/l/pl.l.096-1.jpg', 2),
