@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Edit Product</title>
 <link rel="stylesheet" href="../../assets/css/style.css">
+<script src="../../assets/js/edit-product.js" defer></script>
 </head>
 
 <body>
@@ -83,34 +84,8 @@
   </div>
 </div>
 
-<script>
-// Live image preview
-const input = document.getElementById("imageInput");
-const preview = document.getElementById("preview");
-
-input.addEventListener("input", function() {
-  preview.src = input.value;
-});
-
-// Open modal
-function openModal() {
-  document.getElementById("deleteModal").style.display = "flex";
-}
-
-// Close modal
-function closeModal() {
-  document.getElementById("deleteModal").style.display = "none";
-}
-
-// Confirm delete
-function deleteProduct() {
-  alert("Product deleted (demo)");
-  closeModal();
-}
-</script>
-
 <footer>
-  <p>© 2026 Namā. All rights reserved.</p>
+  <p>&copy; 2026 Namā. All rights reserved.</p>
 </footer>
 
 </body>
