@@ -166,30 +166,91 @@ const products = {
   }
 };
 
-// Get product from URL
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
-const product = products[id];
+const suggestions = [
+  { id: "golden-chocolate-tray", name: "Golden Chocolate Tray", price: "185 SAR", image: "../assets/images/chocolate 1.jpg"},
+  { id: "rose-chocolate-box", name: "Rose Chocolate Box", price: "210 SAR", image: "../assets/images/chocolate 2.jpg"},
+  { id: "golden-bloom-chocolate", name: "Golden Bloom Chocolate", price: "135 SAR", image: "../assets/images/chocolate 3.jpg" },
+  { id: "rose-truffle-box", name: "Rose & Truffle Box", price: "165 SAR", image: "../assets/images/chocolate 4.jpg" },
+  { id: "celebration-chocolate-platter", name: "Celebration Platter", price: "195 SAR", image: "../assets/images/chocolate 5.jpg" },
+  { id: "hada-coffee", name: "Hada Coffee – Saudi Arabia", price: "85 SAR", image: "../assets/images/coffee 1.jpg"},
+  { id: "excelso-coffee", name: "Excelso Coffee – Colombia", price: "90 SAR", image: "../assets/images/coffee 2.jpg"},
+  { id: "hambela-coffee", name: "Hambela Coffee – Ethiopia", price: "95 SAR", image: "../assets/images/coffee3.jpg"}
+];
 
-// Elements
-const nameEl = document.getElementById("productName");
-const categoryEl = document.getElementById("productCategory");
-const priceEl = document.getElementById("productPrice");
-const descEl = document.getElementById("productDescription");
-const imgEl = document.getElementById("productImage");
-
-// Display
-if (product) {
-  nameEl.textContent = product.name;
-  categoryEl.textContent = product.category;
-  priceEl.textContent = product.price;
-  descEl.textContent = product.description;
-  imgEl.src = product.image;
-  imgEl.alt = product.name;
-} else {
-  nameEl.textContent = "Product not found";
-  categoryEl.textContent = "";
-  priceEl.textContent = "";
-  descEl.textContent = "The selected product could not be loaded.";
-  imgEl.style.display = "none";
+if (currentProduct) {
+  document.getElementById("productName").textContent = currentProduct.name;
+  document.getElementById("productCategory").textContent = currentProduct.category;
+  document.getElementById("productPrice").textContent = currentProduct.price;
+  document.getElementById("productDescription").textContent = currentProduct.description;
+  document.getElementById("productImage").src = currentProduct.image;
 }
+
+// Qty logic for Main Product
+function changeMainQty(value) {
+  const qtyEl = document.getElementById("mainQty");
+  let qty = parseInt(qtyEl.textContent) + value;
+  if (qty < 1) qty = 1;
+  qtyEl.textContent = qty;
+  
+}
+
+function handleAddToCart() {
+  const qty = parseInt(document.getElementById("mainQty").textContent);
+  if (currentProduct) {
+    let cart = JSON.parse(localStorage.getItem("nama_cart")) || [];
+    const index = cart.findIndex(item => item.id === productId);
+    if (index > -1) { 
+        cart[index].quantity += qty; 
+    } else { 
+        cart.push({ ...currentProduct, id: productId, quantity: qty }); 
+    }
+    localStorage.setItem("nama_cart", JSON.stringify(cart));
+    alert(`${currentProduct.name} added to your bag!`);
+  }
+}
+
+// Qty and Add logic for Suggestions
+function changeQty(id, value) {
+  const qtyEl = document.getElementById("qty-" + id);
+  let qty = parseInt(qtyEl.textContent) + value;
+  // Apply the max limit of 2 as requested in your HTML
+  if (qty < 1) qty = 1;
+  if (qty > 2) qty = 2; 
+  qtyEl.textContent = qty;
+}
+
+function addToCart(id) {
+  const item = suggestions.find(s => s.id === id);
+  const qty = parseInt(document.getElementById("qty-" + id).textContent);
+  if (item) {
+    let cart = JSON.parse(localStorage.getItem("nama_cart")) || [];
+    const index = cart.findIndex(s => s.id === id);
+    if (index > -1) { 
+        cart[index].quantity += qty; 
+    } else { 
+        cart.push({ ...item, quantity: qty, category: "Gift" }); 
+    }
+    localStorage.setItem("nama_cart", JSON.stringify(cart));
+    alert(`${item.name} added to your bag!`);
+  }
+}
+
+function renderSuggestions() {
+  const container = document.getElementById("suggestionsContainer");
+  container.innerHTML = suggestions.map(item => `
+    <div class="suggestion-card">
+      <img src="${item.image}" alt="${item.name}">
+      <h3>${item.name}</h3>
+      <p id="price">${item.price}</p>
+      <p style="font-size: 0.8rem; color: #888;">(max 2)</p>
+      <div class="qty-box">
+        <button onclick="changeQty('${item.id}', -1)">-</button>
+        <span id="qty-${item.id}">1</span>
+        <button onclick="changeQty('${item.id}', 1)">+</button>
+      </div>
+      <button class="btn-suggestion" onclick="addToCart('${item.id}')" style="margin-top:10px;">Add to Cart</button>
+    </div>
+  `).join('');
+}
+
+renderSuggestions();
