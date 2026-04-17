@@ -11,7 +11,10 @@
 
 <!-- Navbar -->
 <header class="navbar">
-  <div class="logo">Namā</div>
+  <div class="logo">
+  <img src="../../assets/images/logo2.png" alt="logo">
+  <span>Namā</span>
+  </div>
   <nav class="nav-links">
     <a href="../../index.html">Home</a>
     <a href="../products.html">Products</a>
@@ -38,10 +41,10 @@
     <textarea id="description" placeholder="Product Description"></textarea>
 
     <!-- Price -->
-    <input type="number" id="price" placeholder="Price" required>
+    <input type="number" id="price" placeholder="Price" required max="" min="0">
 
     <!-- Stock -->
-    <input type="number" id="stock" placeholder="Stock" required>
+    <input type="number" id="stock" placeholder="Stock" required max="100" min="0">
 
     <!-- Image URL -->
     <input type="text" id="imageInput" placeholder="Image URL">
@@ -50,6 +53,7 @@
     <select id="category">
       <option value="1">Flowers</option>
       <option value="2">Plants</option>
+      <option value="2">Gift Packages</option>
     </select>
 
     <!-- Buttons -->

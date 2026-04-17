@@ -13,7 +13,10 @@
 <body>
 
 <header class="navbar">
-  <div class="logo">Namā</div>
+  <div class="logo">
+  <img src="../assets/images/logo2.png" alt="logo">
+  <span>Namā</span>
+  </div>
   <nav class="nav-links">
       <a href="../index.html">Home</a>
       <a href="products.html">Products</a>
@@ -46,9 +49,21 @@
                 <button onclick="changeMainQty(1)">+</button>
             </div>
         </div>
+        <div class="product-help">
+          <h3>Need Help?</h3>
+          <p>If you have any questions about this product, feel free to contact us.</p>
+          <ul>
+            <li>Fresh flowers delivered daily</li>
+            <li>Delivery within 24-48 hours</li>
+            <li>Custom message available with your order</li>
+          </ul>
+
+  <a href="contact.html" class="secondary-btn">Contact Us</a>
+</div>
 
         <div class="button-group" style="display: flex; gap: 10px; margin-top: 15px;">
             <button onclick="handleAddToCart()" class="btn">Add to Cart</button>
+            <button onclick="handleBuyNow()" class="btn">Buy Now</button>
             <a href="products.html" class="secondary-btn">Back to Products</a>
         </div>
       </div>

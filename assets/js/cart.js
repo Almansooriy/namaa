@@ -72,10 +72,20 @@ window.removeItem = function(index) {
     renderCartItems();
 };
 
-document.getElementById('combinedCheckoutForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    localStorage.removeItem("nama_cart");
-    window.location.href = "thank-you.html";
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById('combinedCheckoutForm');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      localStorage.removeItem("nama_cart");
+      window.location.href = "thank-you.html";
+    });
+  }
 });
 
 document.addEventListener('DOMContentLoaded', renderCartItems);
+
+function clearCart() {
+    localStorage.removeItem("nama_cart");
+    renderCartItems();
+}

@@ -8,11 +8,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="../../assets/js/admin-dashboard.js" defer></script>
 </head>
 <body>
 
 <header class="navbar">
-  <div class="logo">Namā</div>
+  <div class="logo">
+  <img src="../../assets/images/logo2.png" alt="logo">
+  <span>Namā</span>
+  </div>
   <nav class="nav-links">
     <a href="../../index.html">Home</a>
     <a href="../products.html">Products</a>
@@ -35,7 +39,7 @@
 
    <div class="admin-search-form">
     <input type="text" placeholder="Enter product name">
-    <a href="edit-product.html" class="btn">Search</a>
+    <button class="btn" onclick="searchProduct()">Search</button>
    </div>
   </div>
   <div class="admin-dashboard-grid">

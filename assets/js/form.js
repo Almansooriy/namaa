@@ -35,8 +35,9 @@ if (mode === "edit") {
 }
 
 if (mode === "delete") {
-  if (title) title.textContent = "Delete Product";
+  if (title) title.textContent = "Delete Product (Are you sure?)";
   if (deleteBtn) deleteBtn.style.display = "block";
+  if (saveBtn) saveBtn.style.display = "none";
 
   // Demo data
   document.getElementById("name").value = "Rose Bouquet";
