@@ -39,17 +39,23 @@ function updateCartTotals() {
     let subtotal = 0;
     const shippingCost = 30; 
 
+    if (cart.length === 0) {
+        document.getElementById('subtotal-val').innerText = `0.00 SAR`;
+        document.getElementById('total-val').innerText = `0.00 SAR`;
+        return;
+    }
+
     cart.forEach(item => {
         const price = parseFloat(item.price.replace(/[^0-9.]/g, ''));
         subtotal += price * item.quantity;
     });
 
     document.getElementById('subtotal-val').innerText = `${subtotal.toFixed(2)} SAR`;
-    
+
     const shippingDisplay = document.querySelector('.summary-row:nth-child(2) span:last-child');
     if (shippingDisplay) shippingDisplay.innerText = `${shippingCost.toFixed(2)} SAR`;
 
-    const total = subtotal > 0 ? subtotal + shippingCost : 0;
+    const total = subtotal + shippingCost;
     document.getElementById('total-val').innerText = `${total.toFixed(2)} SAR`;
 }
 
@@ -89,3 +95,19 @@ function clearCart() {
     localStorage.removeItem("nama_cart");
     renderCartItems();
 }
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const addons = Array.from(document.querySelectorAll('input[name="addon"]:checked')).map(el => el.value);
+  const note = document.getElementById('customNote').value;
+  const orderDetails = {
+    addons,
+    note
+  };
+
+  localStorage.setItem("nama_customization", JSON.stringify(orderDetails));
+
+  localStorage.removeItem("nama_cart");
+  window.location.href = "thank-you.html";
+});

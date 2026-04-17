@@ -169,6 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("productPrice").textContent = product.price;
   document.getElementById("productDescription").textContent = product.description;
   document.getElementById("productImage").src = product.image;
+  renderSuggestions();
 });
 
 // -------------------------------
@@ -210,4 +211,54 @@ function handleAddToCart() {
 function handleBuyNow() {
   handleAddToCart();
   window.location.href = "cart.html";
+}
+
+// -------------------------------
+// 6. Suggestions (Chocolate & Coffee)
+// -------------------------------
+function renderSuggestions() {
+  const container = document.getElementById("suggestionsContainer");
+  if (!container) return;
+
+  const suggestions = [
+    { name: "Chocolate Box", price: "50 SAR", image: "../assets/images/chocolate 1.jpg" },
+    { name: "Premium Chocolate", price: "65 SAR", image: "../assets/images/chocolate 2.jpg" },
+    { name: "Luxury Chocolate", price: "80 SAR", image: "../assets/images/chocolate 3.jpg" },
+    { name: "Coffee Set", price: "40 SAR", image: "../assets/images/coffee 1.jpg" },
+    { name: "Arabian Coffee", price: "55 SAR", image: "../assets/images/coffee 2.jpg" },
+    { name: "Special Coffee", price: "70 SAR", image: "../assets/images/coffee3.jpg" }
+  ];
+
+  container.innerHTML = suggestions.map(item => `
+    <div class="suggestion-card">
+      <img src="${item.image}" alt="${item.name}">
+      <h3>${item.name}</h3>
+      <p>${item.price}</p>
+      <button onclick="addSuggestionToCart('${item.name}', '${item.price}', '${item.image}')" class="btn-suggestion">
+        Add to Cart
+      </button>
+    </div>
+  `).join('');
+}
+
+function addSuggestionToCart(name, price, image) {
+  let cart = JSON.parse(localStorage.getItem("nama_cart")) || [];
+
+  const index = cart.findIndex(item => item.name === name);
+
+  if (index > -1) {
+    cart[index].quantity += 1;
+  } else {
+    cart.push({
+      id: name.toLowerCase().replace(/\s/g, "-"),
+      name,
+      price,
+      image,
+      quantity: 1,
+      category: "Addon"
+    });
+  }
+
+  localStorage.setItem("nama_cart", JSON.stringify(cart));
+  alert(name + " added to cart");
 }
