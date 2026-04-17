@@ -19,11 +19,13 @@
       <a href="products.html">Products</a>
       <a href="../index.html#about">About</a>
       <a href="contact.html">Contact</a>
-      <a href="#">Cart</a>
+      <a href="cart.html">Cart</a>
       <a href="admin/admin-login.html">Login</a>
   </nav>
 </header>
 
+
+   
 <section class="product-details-page">
   <div class="product-details-wrapper">
     <div class="product-image-box">
@@ -37,11 +39,25 @@
       <p class="product-description" id="productDescription"></p>
 
       <div class="product-actions">
-        <a href="#" class="btn">Add to Cart</a>
-        <a href="products.html" class="secondary-btn">Back to Products</a>
+        <div class="main-qty-wrapper">
+            <div class="qty-box">
+                <button onclick="changeMainQty(-1)">-</button>
+                <span id="mainQty">1</span>
+                <button onclick="changeMainQty(1)">+</button>
+            </div>
+        </div>
+
+        <div class="button-group" style="display: flex; gap: 10px; margin-top: 15px;">
+            <button onclick="handleAddToCart()" class="btn">Add to Cart</button>
+            <a href="products.html" class="secondary-btn">Back to Products</a>
+        </div>
       </div>
     </div>
   </div>
+</section>
+  <section class="suggestions-section">
+  <h2 style="text-align: center; margin-top: 50px;">You May Also Like</h2>
+  <div class="suggestions-container" id="suggestionsContainer"></div>
 </section>
 
 <footer>
