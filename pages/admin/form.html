@@ -26,7 +26,10 @@
     <a href="admin-dashboard.html">Dashboard</a>
     <a href="../../index.html#about">About</a>
     <a href="../contact.html">Contact</a>
-    <a href="../cart.html">Cart</a>
+    <a href="../cart.html" class="cart-icon">
+        🛒
+        <span id="cart-count">0</span>
+      </a>
     <a href="admin-login.html">Logout</a>
   </nav>
 </header>
@@ -46,7 +49,7 @@
     <textarea id="description" placeholder="Product Description"></textarea>
 
     <!-- Price -->
-    <input type="number" id="price" placeholder="Price" required max="" min="0">
+    <input type="number" id="priceaddproduct" placeholder="Price" required max="" min="0">
 
     <!-- Stock -->
     <input type="number" id="stock" placeholder="Stock" required max="100" min="0">
