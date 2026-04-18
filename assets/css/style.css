@@ -999,7 +999,7 @@ footer{
 .form-group label { 
   display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
 
-  .form-group input, 
+.form-group input, 
 .form-group select, 
 .form-group textarea {
   width: 100%;
@@ -1208,4 +1208,21 @@ footer{
   border: 1px solid #ccc;
   resize: none;
   min-height: 80px;
+}
+
+/* PRODUCT FORM PAGE */
+
+#preview{
+  max-width:200px;
+  margin-bottom:10px;
+  border-radius:10px;
+}
+
+#deleteBtn{
+  background:#d9534f;
+  margin-top:10px;
+}
+
+#deleteBtn:hover{
+  background:#c9302c;
 }
