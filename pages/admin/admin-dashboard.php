@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['admin_id'])){
+    header("Location: admin-login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="../../assets/js/admin-dashboard.js" defer></script>
 </head>
-<body>
+<body>ِِ
 
 <header class="navbar">
   <div class="logo">
@@ -18,16 +26,16 @@
   <span>Namā</span>
   </div>
   <nav class="nav-links">
-    <a href="../../index.html">Home</a>
-    <a href="../products.html">Products</a>
-    <a href="admin-dashboard.html">Dashboard</a>
-    <a href="../../index.html#about">About</a>
+    <a href="../../home.html">Home</a>
+    <a href="../products.php">Products</a>
+    <a href="admin-dashboard.php">Dashboard</a>
+    <a href="../../home.html#about">About</a>
     <a href="../contact.html">Contact</a>
     <a href="../cart.html" class="cart-icon">
         🛒
         <span id="cart-count">0</span>
       </a>
-    <a href="admin-login.html">Logout</a>
+    <a href="../../backend/logout.php">Logout</a>
   </nav>
 </header>
 
@@ -49,22 +57,23 @@
     <div class="admin-dashboard-card">
       <h2>Add Product</h2>
       <p>Add a new product with image, price, stock, and category details.</p>
-      <a href="form.html?mode=add" class="btn">Go to Add Product</a>
+      <a href="form.php?mode=add" class="btn">Go to Add Product</a>
     </div>
 
     <div class="admin-dashboard-card">
       <h2>Modify Product</h2>
       <p>Edit product information such as description, price, stock, or image.</p>
-      <a href="form.html?mode=edit&id=1" class="btn">Go to Edit Product</a>
+      <a href="form.php?mode=edit&id=1" class="btn">Go to Edit Product</a>
     </div>
 
     <div class="admin-dashboard-card">
       <h2>Delete Product</h2>
       <p>Remove unavailable or unwanted products from the shop collection.</p>
-      <a href="form.html?mode=delete&id=1" class="btn">Delete Product</a>
+      <a href="form.php?mode=delete&id=1" class="btn">Delete Product</a>
     </div>
   </div>
-  
+
+
 </section>
 
 <footer>

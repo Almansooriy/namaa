@@ -39,11 +39,11 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`admin_id`, `username`, `password`) VALUES
 (1, 'admin', 'admin123'),
-(2, 'Fatimah Almansoor', '123456'),
-(3, 'Nouf Alsalloum', '123456'),
-(4, 'Noof Alateeq', '123456'),
-(5, 'Norah Batarfi', '123456'),
-(6, 'Raha Al Qahtani', '123456');
+(2, 'Fatimah_Almansoor', '123456'),
+(3, 'Nouf_Alsalloum', '123456'),
+(4, 'Noof_Alateeq', '123456'),
+(5, 'Norah_Batarfi', '123456'),
+(6, 'Raha_AlQahtani', '123456');
 
 -- --------------------------------------------------------
 

@@ -5,35 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Namā | Product Details</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="../assets/js/product-details.js" defer></script>
 </head>
+
 <body>
 
 <header class="navbar">
   <div class="logo">
-  <img src="../assets/images/logo2.png" alt="logo">
-  <span>Namā</span>
+    <img src="../assets/images/logo2.png" alt="logo">
+    <span>Namā</span>
   </div>
+
   <nav class="nav-links">
-      <a href="../index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="../index.html#about">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="cart.html" class="cart-icon">
-        🛒
-        <span id="cart-count">0</span>
-      </a>
-      <a href="admin/admin-login.html">Login</a>
+    <a href="../home.html">Home</a>
+
+
+    <a href="products.php">Products</a>
+
+    <a href="../home.html#about">About</a>
+    <a href="contact.html">Contact</a>
+
+    <a href="cart.html" class="cart-icon">
+      🛒
+      <span id="cart-count">0</span>
+    </a>
+
+    <a href="admin/admin-login.php">Login</a>
   </nav>
 </header>
 
-
-   
+<!-- PRODUCT DETAILS -->
 <section class="product-details-page">
   <div class="product-details-wrapper">
+
     <div class="product-image-box">
       <img id="productImage" src="" alt="">
     </div>
@@ -45,13 +53,15 @@
       <p class="product-description" id="productDescription"></p>
 
       <div class="product-actions">
+
         <div class="main-qty-wrapper">
-            <div class="qty-box">
-                <button onclick="changeMainQty(-1)">-</button>
-                <span id="mainQty">1</span>
-                <button onclick="changeMainQty(1)">+</button>
-            </div>
+          <div class="qty-box">
+            <button onclick="changeMainQty(-1)">-</button>
+            <span id="mainQty">1</span>
+            <button onclick="changeMainQty(1)">+</button>
+          </div>
         </div>
+
         <div class="product-help">
           <h3>Need Help?</h3>
           <p>If you have any questions about this product, feel free to contact us.</p>
@@ -61,19 +71,25 @@
             <li>Custom message available with your order</li>
           </ul>
 
-  <a href="contact.html" class="secondary-btn">Contact Us</a>
-</div>
+          <a href="contact.html" class="secondary-btn">Contact Us</a>
+        </div>
 
         <div class="button-group" style="display: flex; gap: 10px; margin-top: 15px;">
-            <button onclick="handleAddToCart()" class="btn">Add to Cart</button>
-            <button onclick="handleBuyNow()" class="btn">Buy Now</button>
-            <a href="products.html" class="secondary-btn">Back to Products</a>
+          <button onclick="handleAddToCart()" class="btn">Add to Cart</button>
+          <button onclick="handleBuyNow()" class="btn">Buy Now</button>
+
+          
+          <a href="products.php" class="secondary-btn">Back to Products</a>
         </div>
+
       </div>
     </div>
+
   </div>
 </section>
-  <section class="suggestions-section">
+
+<!-- SUGGESTIONS -->
+<section class="suggestions-section">
   <h2 style="text-align: center; margin-top: 50px;">You May Also Like</h2>
   <div class="suggestions-container" id="suggestionsContainer"></div>
 </section>

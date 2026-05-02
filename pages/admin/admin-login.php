@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,15 +18,15 @@
   <span>Namā</span>
   </div>
   <nav class="nav-links">
-    <a href="../../index.html">Home</a>
-    <a href="../products.html">Products</a>
-    <a href="../../index.html#about">About</a>
+    <a href="../../home.html">Home</a>
+    <a href="../products.php">Products</a>
+    <a href="../../home.html#about">About</a>
     <a href="../contact.html">Contact</a>
     <a href="../cart.html" class="cart-icon">
         🛒
         <span id="cart-count">0</span>
       </a>
-    <a href="admin-login.html">Login</a>
+    <a href="admin-login.php">Login</a>
   </nav>
 </header>
 
@@ -35,8 +36,7 @@
       <h1>Admin Login</h1>
       <p>Sign in to manage products and control the store content.</p>
     </div>
-
-    <form class="admin-login-form" action="admin-dashboard.html">
+    <form class="admin-login-form" method="POST" action="../../backend/check-login.php">
       <label for="username">Username</label>
       <input type="text" id="username" name="username" placeholder="Enter admin username" required>
 

@@ -8,85 +8,83 @@ const saveBtn = document.getElementById("saveBtn");
 const deleteBtn = document.getElementById("deleteBtn");
 const form = document.getElementById("productForm");
 
-// Hide buttons initially
-if (saveBtn) saveBtn.style.display = "none";
-if (deleteBtn) deleteBtn.style.display = "none";
+// Inputs
+const nameInput = document.getElementById("name");
+const descriptionInput = document.getElementById("description");
+const priceInput = document.getElementById("price");
+const stockInput = document.getElementById("stock");
+const imageInput = document.getElementById("imageInput");
+const preview = document.getElementById("preview");
 
-// Modes
+// --------------------
+// Handle page mode (add / edit / delete)
+// --------------------
+
 if (mode === "add") {
   if (title) title.textContent = "Add Product";
-  if (saveBtn) saveBtn.style.display = "block";
 }
 
 if (mode === "edit") {
   if (title) title.textContent = "Edit Product";
-  if (saveBtn) saveBtn.style.display = "block";
-
-  // Demo data
-  document.getElementById("name").value = "Rose Bouquet";
-  document.getElementById("description").value = "Beautiful roses";
-  document.getElementById("price").value = "120";
-  document.getElementById("stock").value = "10";
-  document.getElementById("imageInput").value =
-    "https://www.fnp.sa/cdn/shop/files/Red_Rose_Flower_Bouquet_Fresh_Flower_Delivery_in_Saudi_Arabia_1.jpg";
-
-  document.getElementById("preview").src =
-    document.getElementById("imageInput").value;
 }
 
 if (mode === "delete") {
   if (title) title.textContent = "Delete Product (Are you sure?)";
-  if (deleteBtn) deleteBtn.style.display = "block";
-  if (saveBtn) saveBtn.style.display = "none";
 
-  // Demo data
-  document.getElementById("name").value = "Rose Bouquet";
-  document.getElementById("description").value = "Beautiful roses";
-  document.getElementById("price").value = "120";
-  document.getElementById("stock").value = "10";
-  document.getElementById("imageInput").value =
-    "https://www.fnp.sa/cdn/shop/files/Red_Rose_Flower_Bouquet_Fresh_Flower_Delivery_in_Saudi_Arabia_1.jpg";
-
-  document.getElementById("preview").src =
-    document.getElementById("imageInput").value;
-
-  // Disable inputs
+  // Disable all inputs in delete mode
   document.querySelectorAll("input, textarea, select").forEach(el => {
     el.disabled = true;
   });
+
+  // Hide save button in delete mode
+  if (saveBtn) saveBtn.style.display = "none";
 }
 
-// Save (Add & Edit)
+// --------------------
+// Image preview handling
+// --------------------
+
+if (imageInput && preview) {
+  // Set initial image (from database if available)
+  preview.src = imageInput.value || "";
+
+  // Update preview when user changes image URL
+  imageInput.addEventListener("input", function () {
+    preview.src = this.value;
+  });
+}
+
+// --------------------
+// Form validation before submit
+// --------------------
+
 if (form) {
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
 
-    if (mode === "add") {
-      alert("Product added successfully!");
+    const price = parseFloat(priceInput.value);
+    const stock = parseInt(stockInput.value);
+
+    // Validate negative values
+    if (price < 0 || stock < 0) {
+      alert("Price and Stock cannot be negative!");
+      e.preventDefault();
+      return;
     }
 
-    if (mode === "edit") {
-      alert("Product updated successfully!");
+    // Validate max limits
+    if (price > 10000) {
+      alert("Price is too high!");
+      e.preventDefault();
+      return;
     }
 
-    window.location.href = "admin-dashboard.html";
-  });
-}
+    if (stock > 1000) {
+      alert("Stock is too high!");
+      e.preventDefault();
+      return;
+    }
 
-// Delete
-if (deleteBtn) {
-  deleteBtn.addEventListener("click", function () {
-    alert("Product deleted successfully!");
-    window.location.href = "admin-dashboard.html";
-  });
-}
-
-// Image preview
-const input = document.getElementById("imageInput");
-const preview = document.getElementById("preview");
-
-if (input && preview) {
-  input.addEventListener("input", function () {
-    preview.src = input.value;
+    // Do NOT use preventDefault here if valid
+    // Let the form submit to PHP normally
   });
 }
