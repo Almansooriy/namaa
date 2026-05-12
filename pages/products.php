@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <?php include '../backend/getProducts.php'; ?>
+
 <body>
 
 <header class="navbar">
@@ -24,7 +25,10 @@
     <a href="products.php">Products</a>
     <a href="../home.html#about">About</a>
     <a href="contact.html">Contact</a>
-    <a href="cart.html" class="cart-icon">🛒</a>
+    <a href="pages/cart.html" class="cart-icon">
+        🛒
+        <span id="cart-count">0</span>
+    </a>
     <a href="admin/admin-login.php">Login</a>
   </nav>
 </header>
@@ -47,7 +51,7 @@
   <div class="products-grid">
 
   <?php
-  $query = "SELECT * FROM products WHERE category_id=1";
+  $query = "SELECT * FROM products WHERE category_id=2";
   $result = mysqli_query($conn, $query);
 
   while($row = mysqli_fetch_assoc($result)) {
@@ -77,7 +81,7 @@
   <div class="products-grid">
 
   <?php
-  $query = "SELECT * FROM products WHERE category_id=2";
+  $query = "SELECT * FROM products WHERE category_id=1";
   $result = mysqli_query($conn, $query);
 
   while($row = mysqli_fetch_assoc($result)) {
@@ -131,6 +135,6 @@
 <footer>
   <p>&copy; 2026 Namā. All rights reserved.</p>
 </footer>
-
+<script src="../assets/js/cart-count.js"></script>
 </body>
 </html>

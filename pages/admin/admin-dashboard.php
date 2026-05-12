@@ -44,14 +44,15 @@ if(!isset($_SESSION['admin_id'])){
     <h1>Admin Dashboard</h1>
     <p>Manage products, update the store, and control all admin actions from one place.</p>
   </div>
-  <div class="admin-search-box">
+  <div class="admin-search-box" id="search">
   <h2>Search Product</h2>
   <p>Search for a product by name before editing or deleting it.</p>
 
    <div class="admin-search-form">
-    <input type="text" placeholder="Enter product name">
-    <button class="btn" onclick="searchProduct()">Search</button>
-   </div>
+  <input type="text" placeholder="Enter product name">
+  <button class="btn" onclick="searchProduct('edit')">Edit</button>
+  <button class="btn delete-btn" onclick="searchProduct('delete')">Delete</button>
+</div>
   </div>
   <div class="admin-dashboard-grid">
     <div class="admin-dashboard-card">
@@ -63,14 +64,15 @@ if(!isset($_SESSION['admin_id'])){
     <div class="admin-dashboard-card">
       <h2>Modify Product</h2>
       <p>Edit product information such as description, price, stock, or image.</p>
-      <a href="form.php?mode=edit&id=1" class="btn">Go to Edit Product</a>
+      <a href="#search" class="btn">Search to Edit</a>
     </div>
 
     <div class="admin-dashboard-card">
       <h2>Delete Product</h2>
       <p>Remove unavailable or unwanted products from the shop collection.</p>
-      <a href="form.php?mode=delete&id=1" class="btn">Delete Product</a>
+      <a href="#search" class="btn">Search to Delete</a>
     </div>
+    
   </div>
 
 

@@ -54,15 +54,18 @@ a{
 
 #cart-count{
   position: absolute;
-  top: -8px;
-  right: -10px;
-  background: #7d9b76;
+  top: -10px;
+  right: -12px;
+  background: #5e7c5a;
   color: white;
   font-size: 12px;
-  padding: 2px 6px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 600;
-  display: none; 
 }
 
 /* HERO HOME */

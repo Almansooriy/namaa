@@ -2,90 +2,139 @@
 // Product Details Page Script
 // ===============================
 
-// 1. Get product ID from URL
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
 let currentProduct = null;
+let mainQty = 1;
 
 document.addEventListener("DOMContentLoaded", function () {
-
   console.log("Product ID:", productId);
 
-  // 2. Check if ID exists
   if (!productId) {
     document.getElementById("productName").textContent = "No product ID!";
     return;
   }
 
-  // 3. Fetch product from backend (PHP API)
-  fetch(`http://localhost:81/Namaa/backend/getOneProduct.php?id=${productId}`)
+  fetch(`/namaa/backend/getOneProduct.php?id=${productId}`)
     .then(response => {
-
       console.log("Response:", response);
 
-      // Check if response is OK
       if (!response.ok) {
         throw new Error("Network response was not OK");
       }
 
-      // Convert response to JSON
       return response.json();
     })
     .then(product => {
-
       console.log("Product Data:", product);
 
-      // 4. Check if product exists
       if (!product || product.error) {
         document.getElementById("productName").textContent = "Product not found";
         return;
       }
 
-      // Save product globally if needed
       currentProduct = product;
 
-      // 5. Fill product data in HTML
-
-      // Product name (supports different DB column names)
       document.getElementById("productName").textContent =
         product.product_name || product.name || "No Name";
 
-      // Category
-      document.getElementById("productCategory").textContent =
-        "Category: " + (product.category_id || "-");
+      let categoryName = "Unknown";
 
-      // Price
+      if (product.category_id == 1) {
+        categoryName = "Plants";
+      } else if (product.category_id == 2) {
+        categoryName = "Flowers";
+      } else if (product.category_id == 3) {
+        categoryName = "Gift Packages";
+      }
+
+      document.getElementById("productCategory").textContent =
+        "Category: " + categoryName;
+
       document.getElementById("productPrice").textContent =
         (product.price || "0") + " SAR";
 
-      // Description
       document.getElementById("productDescription").textContent =
         product.description || "No description";
 
-      // 6. Handle image path
       let imagePath = product.image || "";
 
-      // If image is not a full URL, use local path
       if (imagePath && !imagePath.startsWith("http")) {
         imagePath = "../assets/images/" + imagePath;
       }
 
-      // Set image source
       document.getElementById("productImage").src = imagePath;
+      document.getElementById("productImage").alt =
+        product.product_name || product.name || "Product image";
 
-      // 7. Optional: load suggestions
       if (typeof renderSuggestions === "function") {
         renderSuggestions();
       }
-
     })
     .catch(error => {
-
       console.error("FETCH ERROR:", error);
-
-      // Show error message to user
       document.getElementById("productName").textContent = "Error loading product";
     });
-
 });
+
+function changeMainQty(change) {
+  mainQty += change;
+
+  if (mainQty < 1) {
+    mainQty = 1;
+  }
+
+  document.getElementById("mainQty").textContent = mainQty;
+}
+
+function handleAddToCart() {
+  if (!currentProduct) {
+    alert("Product is not loaded yet.");
+    return;
+  }
+
+  let cart = JSON.parse(localStorage.getItem("nama_cart")) || [];
+
+  const existingProduct = cart.find(item => item.id == currentProduct.product_id);
+
+  if (existingProduct) {
+    existingProduct.quantity += mainQty;
+  } else {
+    cart.push({
+      id: currentProduct.product_id,
+      name: currentProduct.name,
+      price: currentProduct.price + " SAR",
+      image: currentProduct.image,
+      category: currentProduct.category_id,
+      quantity: mainQty
+    });
+  }
+
+  localStorage.setItem("nama_cart", JSON.stringify(cart));
+  updateCartCount();
+  alert("Product added to cart.");
+}
+
+function handleBuyNow() {
+  handleAddToCart();
+  window.location.href = "cart.html";
+}
+function updateCartCount() {
+
+  const cart = JSON.parse(localStorage.getItem("nama_cart")) || [];
+
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.quantity;
+  });
+
+  const cartCount = document.getElementById("cart-count");
+
+  if (cartCount) {
+    cartCount.textContent = total;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", updateCartCount);

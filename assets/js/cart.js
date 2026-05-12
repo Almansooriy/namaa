@@ -40,9 +40,15 @@ function updateCartTotals() {
     const shippingCost = 30; 
 
     if (cart.length === 0) {
-        document.getElementById('subtotal-val').innerText = `0.00 SAR`;
-        document.getElementById('total-val').innerText = `0.00 SAR`;
-        return;
+    document.getElementById('subtotal-val').innerText = `0.00 SAR`;
+
+    const shippingDisplay = document.querySelector('.summary-row:nth-child(2) span:last-child');
+    if (shippingDisplay) {
+        shippingDisplay.innerText = `0.00 SAR`;
+    }
+
+    document.getElementById('total-val').innerText = `0.00 SAR`;
+    return;
     }
 
     cart.forEach(item => {
@@ -69,6 +75,8 @@ window.updateQty = function(index, change) {
 
     localStorage.setItem("nama_cart", JSON.stringify(cart));
     renderCartItems();
+    updateCartTotals();
+    updateCartCount();
 };
 
 window.removeItem = function(index) {
@@ -76,15 +84,80 @@ window.removeItem = function(index) {
     cart.splice(index, 1);
     localStorage.setItem("nama_cart", JSON.stringify(cart));
     renderCartItems();
+    updateCartTotals();
+    updateCartCount();
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById('combinedCheckoutForm');
+  const form = document.getElementById("combinedCheckoutForm");
+
   if (form) {
-    form.addEventListener('submit', function(e) {
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
-      localStorage.removeItem("nama_cart");
-      window.location.href = "thank-you.html";
+
+      const cart = JSON.parse(localStorage.getItem("nama_cart")) || [];
+
+      if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+
+      const fullName = document.getElementById("fullName").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const city = document.getElementById("city").value;
+      const address = document.getElementById("address").value.trim();
+      const payment = document.querySelector('input[name="payment"]:checked').value;
+
+      if (fullName === "" || phone === "" || address === "") {
+        alert("Please fill in all shipping information.");
+        return;
+      }
+
+      const phonePattern = /^05[0-9]{8}$/;
+      if (!phonePattern.test(phone)) {
+        alert("Please enter a valid Saudi phone number starting with 05.");
+        return;
+      }
+
+      const addons = Array.from(document.querySelectorAll('input[name="addon"]:checked')).map(
+        item => item.value
+      );
+
+      const note = document.getElementById("customNote").value.trim();
+
+      fetch("../backend/processCheckout.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          cart: cart,
+          customer: {
+            fullName: fullName,
+            phone: phone,
+            city: city,
+            address: address,
+            payment: payment
+          },
+          customization: {
+            addons: addons,
+            note: note
+          }
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            localStorage.removeItem("nama_cart");
+            window.location.href = "thank-you.html";
+          } else {
+            alert(data.message);
+          }
+        })
+        .catch(error => {
+          console.error("Checkout error:", error);
+          alert("Something went wrong during checkout.");
+        });
     });
   }
 });
@@ -94,20 +167,26 @@ document.addEventListener('DOMContentLoaded', renderCartItems);
 function clearCart() {
     localStorage.removeItem("nama_cart");
     renderCartItems();
+    updateCartCount();
+    updateCartTotals();
 }
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
+renderCartItems();
+updateCartCount();
+updateCartTotals();
+function updateCartCount() {
 
-  const addons = Array.from(document.querySelectorAll('input[name="addon"]:checked')).map(el => el.value);
-  const note = document.getElementById('customNote').value;
-  const orderDetails = {
-    addons,
-    note
-  };
+  const cart = JSON.parse(localStorage.getItem("nama_cart")) || [];
 
-  localStorage.setItem("nama_customization", JSON.stringify(orderDetails));
+  let total = 0;
 
-  localStorage.removeItem("nama_cart");
-  window.location.href = "thank-you.html";
-});
+  cart.forEach(item => {
+    total += item.quantity;
+  });
+
+  const cartCount = document.getElementById("cart-count");
+
+  if (cartCount) {
+    cartCount.textContent = total;
+  }
+}

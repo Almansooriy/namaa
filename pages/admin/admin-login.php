@@ -51,6 +51,6 @@
 <footer>
   <p>&copy; 2026 Namā. All rights reserved.</p>
 </footer>
-
+<script src="../../assets/js/cart-count.js"></script>
 </body>
 </html>
