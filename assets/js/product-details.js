@@ -138,3 +138,16 @@ function updateCartCount() {
 }
 
 document.addEventListener("DOMContentLoaded", updateCartCount);
+function openHelpPopup() {
+  const popup = document.getElementById("helpPopup");
+  if (popup) {
+    popup.style.display = "flex";
+  }
+}
+
+function closeHelpPopup() {
+  const popup = document.getElementById("helpPopup");
+  if (popup) {
+    popup.style.display = "none";
+  }
+}

@@ -12,6 +12,7 @@ if (!$data || !isset($data["cart"]) || count($data["cart"]) === 0) {
 }
 
 $cart = $data["cart"];
+$_SESSION["cart"] = $cart;
 $customer = $data["customer"] ?? [];
 $customization = $data["customization"] ?? [];
 
@@ -69,7 +70,7 @@ try {
     );
 
     $conn->commit();
-
+    unset($_SESSION["cart"]);
     echo json_encode([
         "success" => true,
         "message" => "Order completed successfully."

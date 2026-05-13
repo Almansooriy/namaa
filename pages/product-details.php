@@ -56,22 +56,19 @@
 
         <div class="main-qty-wrapper">
           <div class="qty-box">
-            <button onclick="changeMainQty(-1)">-</button>
-            <span id="mainQty">1</span>
-            <button onclick="changeMainQty(1)">+</button>
+            <button type="button" onclick="changeMainQty(-1)" aria-label="Decrease quantity">-</button>
+            <span id="mainQty" aria-live="polite">1</span>
+            <button type="button" onclick="changeMainQty(1)" aria-label="Increase quantity">+</button>
           </div>
         </div>
-
+<br>
         <div class="product-help">
-          <h3>Need Help?</h3>
-          <p>If you have any questions about this product, feel free to contact us.</p>
-          <ul>
-            <li>Fresh flowers delivered daily</li>
-            <li>Delivery within 24-48 hours</li>
-            <li>Custom message available with your order</li>
-          </ul>
+            <h3>Need Help?</h3>
+            <p>Click the button below to view product help information.</p>
 
-          <a href="contact.html" class="secondary-btn">Contact Us</a>
+             <button type="button" class="secondary-btn" onclick="openHelpPopup()" aria-label="Open product help popup">
+                   Open Help
+              </button>
         </div>
 
         <div class="button-group" style="display: flex; gap: 10px; margin-top: 15px;">
@@ -97,6 +94,21 @@
 <footer>
   <p>&copy; 2026 Namā. All rights reserved.</p>
 </footer>
-
+<div id="helpPopup" class="modal" role="dialog" aria-modal="true" aria-labelledby="helpPopupTitle">
+  <div class="modal-content">
+       <h3 id="helpPopupTitle">Product Help</h3>
+       <p>If you have any questions about this product, feel free to contact us.</p>
+      <ul>
+        <li>Fresh flowers delivered daily</li>
+       <li>Delivery within 24-48 hours</li>
+        <li>Custom message available with your order</li>
+      </ul>
+        <a href="contact.html" class="secondary-btn">Contact Us</a>
+        <br>
+        <button type="button" class="cancel-btn" onclick="closeHelpPopup()" aria-label="Close help popup">
+          Close
+        </button>
+  </div>
+</div>
 </body>
 </html>

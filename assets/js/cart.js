@@ -149,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
           if (data.success) {
             localStorage.removeItem("nama_cart");
+            updateCartCount();
             window.location.href = "thank-you.html";
           } else {
             alert(data.message);
