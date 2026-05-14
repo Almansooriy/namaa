@@ -15,7 +15,7 @@ function renderCartItems() {
             </div>
             <div class="cart-item-details">
                 <div class="item-info">
-                    <span class="item-category">${item.category || 'Gift'}</span>
+                  <span class="item-category"></span>
                     <h3>${item.name}</h3>
                     <p class="item-price">${item.price}</p>
                 </div>
