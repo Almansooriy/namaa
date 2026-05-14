@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  fetch(`/namaa/backend/getOneProduct.php?id=${productId}`)
+  fetch(`/namaa/backend/productDetails.php?id=${productId}`)
     .then(response => {
       console.log("Response:", response);
 
@@ -68,9 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("productImage").alt =
         product.product_name || product.name || "Product image";
 
-      if (typeof renderSuggestions === "function") {
-        renderSuggestions();
-      }
     })
     .catch(error => {
       console.error("FETCH ERROR:", error);
@@ -151,3 +148,74 @@ function closeHelpPopup() {
     popup.style.display = "none";
   }
 }
+
+function renderSuggestions() {
+
+  const suggestionsContainer =
+    document.getElementById("suggestionsContainer");
+
+  if (!suggestionsContainer) return;
+
+  const suggestions = [
+
+    {
+      name: "Chocolate Box",
+      image: "../assets/images/chocolate1.jpg"
+    },
+
+    {
+      name: "Premium Chocolate",
+      image: "../assets/images/chocolate2.jpg"
+    },
+
+    {
+      name: "Luxury Chocolate",
+      image: "../assets/images/chocolate3.jpg"
+    },
+
+    {
+      name: "Sweet Chocolate",
+      image: "../assets/images/chocolate4.jpg"
+    },
+
+    {
+      name: "Special Chocolate",
+      image: "../assets/images/chocolate5.jpg"
+    },
+
+    {
+      name: "Coffee Pack",
+      image: "../assets/images/coffee1.jpg"
+    },
+
+    {
+      name: "Premium Coffee",
+      image: "../assets/images/coffee2.jpg"
+    },
+
+    {
+      name: "Arabic Coffee",
+      image: "../assets/images/coffee3.jpg"
+    }
+
+  ];
+
+  suggestionsContainer.innerHTML = "";
+
+  suggestions.forEach(item => {
+
+    suggestionsContainer.innerHTML += `
+      <div class="suggestion-card">
+
+        <img src="${item.image}" alt="${item.name}">
+
+        <h3>${item.name}</h3>
+
+      </div>
+    `;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderSuggestions();
+});
