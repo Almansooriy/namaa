@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2026 at 11:46 PM
+-- Generation Time: May 14, 2026 at 03:46 AM
 -- Server version: 8.0.42
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `namaa`
 --
+CREATE DATABASE IF NOT EXISTS `namaa` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `namaa`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +31,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admins` (
   `admin_id` int NOT NULL,
-  `username` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -37,13 +39,13 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`admin_id`, `username`, `password`) VALUES
-(1, 'admin', 'admin123'),
-(2, 'Fatimah_Almansoor', '123456'),
-(3, 'Nouf_Alsalloum', '123456'),
-(4, 'Noof_Alateeq', '123456'),
-(5, 'Norah_Batarfi', '123456'),
-(6, 'Raha_AlQahtani', '123456');
+INSERT INTO `admins` (`admin_id`, `email`, `password`) VALUES
+(1, 'admin@namaa.com', 'admin123'),
+(2, 'fatimah@namaa.com', '123456'),
+(3, 'nouf@namaa.com', '123456'),
+(4, 'noof@namaa.com', '123456'),
+(5, 'norah@namaa.com', '123456'),
+(6, 'raha@namaa.com', '123456');
 
 -- --------------------------------------------------------
 
@@ -119,7 +121,7 @@ INSERT INTO `products` (`product_id`, `name`, `description`, `price`, `stock`, `
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`admin_id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `categories`

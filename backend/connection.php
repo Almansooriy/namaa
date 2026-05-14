@@ -1,10 +1,10 @@
 <?php
 
-$host = "127.0.0.1";
+$host = "localhost";
 $user = "root";
-$password = "";
+$password = "ALmansoor*12";
 $dbname = "namaa";
-$port = 3307;
+$port = 3306;
 
 $conn = new mysqli($host, $user, $password, $dbname, $port);
 

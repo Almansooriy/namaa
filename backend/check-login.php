@@ -2,12 +2,12 @@
 session_start();
 include 'connection.php';
 
-$username = trim($_POST['username']);
+$email = trim($_POST['email']);
 $password = trim($_POST['password']);
 
-$sql = "SELECT * FROM admins WHERE username=?";
+$sql = "SELECT * FROM admins WHERE email=?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $username);
+$stmt->bind_param("s", $email);
 $stmt->execute();
 
 $result = $stmt->get_result();
@@ -17,20 +17,20 @@ if($result->num_rows > 0){
 
     if($password == $admin['password']){
 
-        $_SESSION['admin_id'] = $admin['admin_id']; // ✅ مهم
-        $_SESSION['admin_name'] = $admin['username'];
+        $_SESSION['admin_id'] = $admin['admin_id'];
+        $_SESSION['admin_email'] = $admin['email'];
 
         session_regenerate_id(true);
 
-        header("Location: /Namaa/pages/admin/admin-dashboard.php");
+        header("Location: /namaa/pages/admin/admin-dashboard.php");
         exit;
 
     } else {
-        header("Location: /Namaa/pages/admin/admin-login.php?error=1");
+        header("Location: /namaa/pages/admin/admin-login.php?error=1");
         exit;
     }
 } else {
-    header("Location: /Namaa/pages/admin/admin-login.php?error=1");
+    header("Location: /namaa/pages/admin/admin-login.php?error=1");
     exit;
 }
 ?>
