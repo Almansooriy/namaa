@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Namā |  Cart</title>
+  <title>Namā | Cart</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,51 +13,52 @@
 <script src="../assets/js/cart-count.js"></script>
 <body>
 
-<header class="navbar">
+<header class="navbar" role="banner">
   <div class="logo">
-  <img src="../assets/images/logo2.png" alt="logo">
-  <span>Namā</span>
+    <img src="../assets/images/logo2.png" alt="Namā Logo">
+    <span>Namā</span>
   </div>
-  <nav class="nav-links">
+  <nav class="nav-links" aria-label="Main Navigation">
       <a href="../home.html">Home</a>
       <a href="products.php">Products</a>
       <a href="../home.html#about">About</a>
       <a href="contact.html">Contact</a>
-      <a href="cart.html" class="cart-icon">
-        🛒
+      <a href="cart.html" class="cart-icon" aria-label="Shopping cart" aria-current="page">
+        <span aria-hidden="true">🛒</span>
         <span id="cart-count">0</span>
       </a>
       <a href="admin/admin-login.php">Login</a>
   </nav>
 </header>
  
-<main class="cart-page">
+<main class="cart-page" id="main-content">
   <div class="cart-wrapper">
     <div class="cart-left-section">
       
-      <section class="cart-items-container">
-        <h1>Your Cart</h1>
-        <div id="cartItemsList">
-          </div>
+      <section class="cart-items-container" aria-labelledby="cart-title">
+        <h1 id="cart-title">Your Cart</h1>
+        <div id="cartItemsList" aria-live="polite">
+            </div>
       </section>
 
-      <section class="checkout-form-section">
-        <h2>Shipping Information</h2>
+      <section class="checkout-form-section" aria-labelledby="shipping-title">
+        <h2 id="shipping-title">Shipping Information</h2>
         <form id="combinedCheckoutForm">
           <div class="form-row">
             <div class="form-group">
-              <label>Full Name</label>
-              <input type="text" id="fullName" placeholder="Sarah Ahmed" required>
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Sarah Ahmed" required aria-required="true">
             </div>
             <div class="form-group">
-              <label>Phone Number</label>
-              <input type="tel" id="phone" placeholder="05XXXXXXXX" required>
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="05XXXXXXXX" required aria-required="true">
             </div>
           </div>
           
           <div class="form-group">
-            <label>City</label>
-            <select id="city" required>
+            <label for="city">City</label>
+            <select id="city" name="city" required aria-required="true">
+              <option value="" disabled selected>Select your city</option>
               <option value="khobar">Al Khobar</option>
               <option value="dammam">Dammam</option>
               <option value="riyadh">Riyadh</option>
@@ -65,35 +66,37 @@
           </div>
           
           <div class="form-group">
-            <label>Delivery Address</label>
-            <textarea id="address" placeholder="District, Street name, House number" required></textarea>
+            <label for="address">Delivery Address</label>
+            <textarea id="address" name="address" placeholder="District, Street name, House number" required aria-required="true"></textarea>
           </div>
 
-          <h2 style="margin-top: 30px;">Payment Method</h2>
-          <div class="payment-grid">
-            <label class="payment-option">
-              <input type="radio" name="payment" value="mada" checked>
-              <span>Mada / Visa</span>
-            </label>
-            <label class="payment-option">
-              <input type="radio" name="payment" value="apple">
-              <span>Apple Pay</span>
-            </label>
-            <label class="payment-option">
-              <input type="radio" name="payment" value="cod">
-              <span>Cash on Delivery</span>
-            </label>
-          </div>
+          <fieldset style="border: none; padding: 0; margin-top: 30px;">
+            <legend><h2 style="margin: 0;">Payment Method</h2></legend>
+            <div class="payment-grid" role="radiogroup" aria-labelledby="payment-label">
+              <label class="payment-option">
+                <input type="radio" name="payment" value="mada" checked>
+                <span>Mada / Visa</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" value="apple">
+                <span>Apple Pay</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" value="cod">
+                <span>Cash on Delivery</span>
+              </label>
+            </div>
+          </fieldset>
         </form>
       </section>
     </div>
 
-    <aside class="cart-right-section">
+    <aside class="cart-right-section" aria-labelledby="summary-title">
       <div class="summary-box">
-        <h2>Order Summary</h2>
+        <h2 id="summary-title">Order Summary</h2>
         <div class="summary-row">
           <span>Subtotal</span>
-          <span id="subtotal-val">0.00 SAR</span>
+          <span id="subtotal-val" aria-live="polite">0.00 SAR</span>
         </div>
         <div class="summary-row">
           <span>Shipping</span>
@@ -101,24 +104,33 @@
         </div>
         <div class="summary-row total">
           <span>Total</span>
-          <span id="total-val">0.00 SAR</span>
+          <span id="total-val" aria-live="polite">0.00 SAR</span>
         </div>
+
         <div class="customization-box">
           <h3>Customize Your Order</h3>
-          <label class="custom-option">
-            <input type="checkbox" name="addon" value="chocolate">Chocolate</label>
+          <fieldset style="border: none; padding: 0;">
+            <legend class="sr-only" style="display:none;">Add-ons</legend>
             <label class="custom-option">
-              <input type="checkbox" name="addon" value="coffee">Coffee</label>
-              <textarea id="customNote" placeholder="Write any special request (type of chocolate, coffee details, etc...)"></textarea>
-            </div>
+              <input type="checkbox" name="addon" value="chocolate"> Chocolate
+            </label>
+            <label class="custom-option">
+              <input type="checkbox" name="addon" value="coffee"> Coffee
+            </label>
+          </fieldset>
+          <label for="customNote">Special Requests</label>
+          <textarea id="customNote" placeholder="Write any special request (type of chocolate, coffee details, etc...)"></textarea>
+        </div>
+
         <button type="submit" class="checkout-btn" form="combinedCheckoutForm">Complete Order</button>
-        <button onclick="clearCart()" class="delete-all-btn">Delete All</button>
+        <button onclick="clearCart()" class="delete-all-btn" aria-label="Clear all items from cart">Delete All</button>
         <a href="products.php" class="continue-link">Continue Shopping</a>
       </div>
     </aside>
   </div>
 </main>
-<footer>
+
+<footer role="contentinfo">
   <p>&copy; 2026 Namā. All rights reserved.</p>
 </footer>
 
