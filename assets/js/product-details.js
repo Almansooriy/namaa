@@ -209,7 +209,11 @@ function renderSuggestions() {
 
         <img src="${item.image}" alt="${item.name}">
 
-        <h3>${item.name}</h3>
+        <h3>${item.name}</h3>3
+        <button class="btn"
+        onclick="addSuggestionToCart('${item.name}', '${item.image}')">
+        Add to Cart
+        </button>
 
       </div>
     `;
@@ -219,3 +223,32 @@ function renderSuggestions() {
 document.addEventListener("DOMContentLoaded", () => {
   renderSuggestions();
 });
+
+function addSuggestionToCart(name, image) {
+
+  let cart = JSON.parse(localStorage.getItem("nama_cart")) || [];
+
+  const existingProduct = cart.find(item => item.name === name);
+
+  if (existingProduct) {
+
+    existingProduct.quantity += 1;
+
+  } else {
+
+    cart.push({
+      id: Date.now(),
+      name: name,
+      price: "25 SAR",
+      image: image,
+      category: "Suggestions",
+      quantity: 1
+    });
+  }
+
+  localStorage.setItem("nama_cart", JSON.stringify(cart));
+
+  updateCartCount();
+
+  alert(name + " added to cart");
+}
