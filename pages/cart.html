@@ -122,9 +122,19 @@
           <textarea id="customNote" placeholder="Write any special request (type of chocolate, coffee details, etc...)"></textarea>
         </div>
 
+        <div id="deleteModal" class="modal">
+          <div class="modal-content">
+             <h3>Are you sure?</h3>
+              <p>Do you want to empty the cart?</p>
+               <div class="modal-buttons">
+                  <button class="confirm-btn" onclick="executeDelete()">Yes</button>
+                   <button class="cancel-btn" onclick="closeDeleteModal()">Cancel</button>
+                </div>
+          </div>
+        </div>
         <button type="submit" class="checkout-btn" form="combinedCheckoutForm">Complete Order</button>
-        <button onclick="clearCart()" class="delete-all-btn" aria-label="Clear all items from cart">Delete All</button>
-        <a href="products.php" class="continue-link">Continue Shopping</a>
+         <button onclick="confirmClearCart()" class="delete-all-btn" aria-label="Clear all items from cart"> Delete All </button>
+          <a href="products.php" class="continue-link">Continue
       </div>
     </aside>
   </div>

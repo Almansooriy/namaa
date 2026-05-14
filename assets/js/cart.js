@@ -8,28 +8,36 @@ function renderCartItems() {
         return;
     }
 
-    cartContainer.innerHTML = cart.map((item, index) => `
-        <div class="cart-item" data-index="${index}">
-            <div class="cart-item-image">
-                <img src="${item.image}" alt="${item.name}">
-            </div>
-            <div class="cart-item-details">
-                <div class="item-info">
-                  <span class="item-category"></span>
-                    <h3>${item.name}</h3>
-                    <p class="item-price">${item.price}</p>
+    cartContainer.innerHTML = cart.map((item, index) => {
+        // التحقق من مسار الصورة: إذا كان لا يبدأ بـ ../ نقوم بإضافته
+        let imagePath = item.image;
+        if (imagePath && !imagePath.startsWith('../')) {
+            imagePath = '../assets/images/' + imagePath;
+        }
+
+        return `
+            <div class="cart-item" data-index="${index}">
+                <div class="cart-item-image">
+                    <img src="${imagePath}" alt="${item.name}" onerror="this.src='../assets/images/logo2.png'">
                 </div>
-                <div class="item-management">
-                    <div class="qty-box">
-                        <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
-                        <span>${item.quantity}</span>
-                        <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
+                <div class="cart-item-details">
+                    <div class="item-info">
+                        <span class="item-category"></span>
+                        <h3>${item.name}</h3>
+                        <p class="item-price">${item.price}</p>
                     </div>
-                    <button class="remove-link" onclick="removeItem(${index})">Remove</button>
+                    <div class="item-management">
+                        <div class="qty-box">
+                            <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
+                        </div>
+                        <button class="remove-link" onclick="removeItem(${index})">Remove</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 
     updateCartTotals();
 }
@@ -124,8 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       const note = document.getElementById("customNote").value.trim();
-
-      fetch("../backend/processCheckout.php", {
+fetch("../backend/processCheckout.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -165,16 +172,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener('DOMContentLoaded', renderCartItems);
 
-function clearCart() {
+
+
+
+window.confirmClearCart = function() {
+    document.getElementById('deleteModal').style.display = 'flex';
+};
+
+
+window.closeDeleteModal = function() {
+    document.getElementById('deleteModal').style.display = 'none';
+};
+
+window.executeDelete = function() {
     localStorage.removeItem("nama_cart");
+    
+    
     renderCartItems();
     updateCartCount();
     updateCartTotals();
-}
-
-renderCartItems();
-updateCartCount();
-updateCartTotals();
+    
+    closeDeleteModal(); 
+};
 function updateCartCount() {
 
   const cart = JSON.parse(localStorage.getItem("nama_cart")) || [];
