@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Namā | Thank You </title>
+  <title>Namā | Thank You</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,30 +11,34 @@
 </head>
 <body>
 
-<header class="navbar">
+<header class="navbar" role="banner">
   <div class="logo">
-  <img src="../assets/images/logo2.png" alt="logo">
-  <span>Namā</span>
+    <img src="../assets/images/logo2.png" alt="Namā Logo">
+    <span>Namā</span>
   </div>
-  <nav class="nav-links">
+  <nav class="nav-links" aria-label="Main Navigation">
       <a href="../home.html">Home</a>
       <a href="products.php">Products</a>
       <a href="../home.html#about">About</a>
       <a href="contact.html">Contact</a>
-      <a href="cart.html" class="cart-icon">
-        🛒
+      <a href="cart.html" class="cart-icon" aria-label="Shopping cart">
+        <span aria-hidden="true">🛒</span>
         <span id="cart-count">0</span>
       </a>
       <a href="admin/admin-login.php">Login</a>
   </nav>
 </header>
-  <div class="thank-you-container">
+
+<main id="main-content" role="main">
+  <div class="thank-you-container" role="alert" aria-live="polite">
     <h1>Thank You!</h1>
     <p>Your order has been placed successfully. We'll start preparing your gift with love.</p>
-    <a href="../home.html" class="home-btn">Back to Home</a>
+    
+    <a href="../home.html" class="home-btn" aria-label="Return to the home page">Back to Home</a>
   </div>
+</main>
   
-<footer>
+<footer role="contentinfo">
   <p>&copy; 2026 Namā. All rights reserved.</p>
 </footer>
 
