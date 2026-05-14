@@ -73,7 +73,7 @@ if (($mode == 'edit' || $mode == 'delete')) {
     ?>
   </h2>
 
-  <form method="POST" action="../../backend/process-product.php" id="productForm">
+  <form method="POST" action="../../backend/process-product.php" id="productForm" enctype="multipart/form-data">
 
     <input type="hidden" name="mode" value="<?php echo $mode; ?>">
     <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -155,12 +155,11 @@ if (($mode == 'edit' || $mode == 'delete')) {
              step="1"
              required>
 
-      <input type="text"
+      <input type="file"
              id="imageInput"
              name="image"
-             placeholder="Image URL"
-             value="<?php echo htmlspecialchars($product['image'] ?? ''); ?>"
-             required>
+              accept="image/*"
+             <?php if ($mode == 'add') echo 'required'; ?>>
 
       <select name="category" id="category" required>
         <option value="2" <?php if (($product['category_id'] ?? '') == 2) echo 'selected'; ?>>Flowers</option>

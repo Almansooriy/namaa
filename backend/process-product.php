@@ -29,11 +29,28 @@ $name = $_POST["name"] ?? "";
 $price = $_POST["price"] ?? "";
 $description = $_POST["description"] ?? "";
 $stock = $_POST["stock"] ?? "";
-$image = $_POST["image"] ?? "";
+$image = "";
+
+if (isset($_FILES["image"]) && $_FILES["image"]["error"] === 0) {
+
+    $uploadDir = __DIR__ . "/../assets/images/";
+
+    $fileName = basename($_FILES["image"]["name"]);
+
+    $targetPath = $uploadDir . $fileName;
+
+    move_uploaded_file($_FILES["image"]["tmp_name"], $targetPath);
+
+    $image = $fileName;
+}
 $category = $_POST["category"] ?? "";
 
-if ($name === "" || $price === "" || $description === "" || $stock === "" || $image === "" || $category === "") {
+if ($name === "" || $price === "" || $description === "" || $stock === "" || $category === "") {
     die("Please fill all fields.");
+}
+
+if ($mode === "add" && $image === "") {
+    die("Please upload an image.");
 }
 
 if ($price < 0 || $stock < 0) {
@@ -52,6 +69,23 @@ else if ($mode === "edit") {
     if ($id <= 0) {
         die("Invalid product ID.");
     }
+
+if ($image === "") {
+
+    $oldStmt = $conn->prepare(
+        "SELECT image FROM products WHERE product_id = ?"
+    );
+
+    $oldStmt->bind_param("i", $id);
+
+    $oldStmt->execute();
+
+    $oldResult = $oldStmt->get_result();
+
+    $oldProduct = $oldResult->fetch_assoc();
+
+    $image = $oldProduct["image"];
+}
 
     $stmt = $conn->prepare(
         "UPDATE products 

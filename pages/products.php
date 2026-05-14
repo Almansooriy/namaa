@@ -58,7 +58,7 @@
   ?>
 
     <div class="product-card" onclick="window.location.href='product-details.php?id=<?php echo $row['product_id']; ?>'">
-      <img src="<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>">
+      <img src="../assets/images/<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>">
 
       <div class="product-details">
         <h3><?php echo $row['name']; ?></h3>
@@ -88,7 +88,7 @@
   ?>
 
     <div class="product-card" onclick="window.location.href='product-details.php?id=<?php echo $row['product_id']; ?>'">
-      <img src="<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>">
+      <img src="../assets/images/<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>">
 
       <div class="product-details">
         <h3><?php echo $row['name']; ?></h3>
@@ -118,7 +118,7 @@
   ?>
 
     <div class="product-card" onclick="window.location.href='product-details.php?id=<?php echo $row['product_id']; ?>'">
-      <img src="<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>">
+      <img src="../assets/images/<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>">
 
       <div class="product-details">
         <h3><?php echo $row['name']; ?></h3>
