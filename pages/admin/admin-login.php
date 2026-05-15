@@ -45,19 +45,21 @@
       <p>Sign in to manage products and control the store content.</p>
     </div>
 
-    <form class="admin-login-form"
+    <form id="loginForm"
+          class="admin-login-form"
           method="POST"
           action="../../backend/check-login.php">
 
       <label for="email">Email</label>
 
       <input
-        type="email"
+        type="text"
         id="email"
         name="email"
         placeholder="Enter admin email"
         required
       >
+      <small id="emailError" class="error-message"></small>
 
       <label for="password">Password</label>
 
@@ -84,4 +86,39 @@
 <script src="../../assets/js/cart-count.js"></script>
 
 </body>
+<script>
+
+const emailInput =
+  document.getElementById("email");
+
+const emailError =
+  document.getElementById("emailError");
+
+emailInput.addEventListener("input", function(){
+
+    emailError.textContent = "";
+
+});
+
+document.getElementById("loginForm").addEventListener("submit", function(e){
+
+    const email = emailInput.value;
+
+    const emailPattern =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    emailError.textContent = "";
+
+    if(!emailPattern.test(email)){
+
+        e.preventDefault();
+
+        emailError.textContent =
+          "Please enter a valid email address";
+
+    }
+
+});
+
+</script>
 </html>
