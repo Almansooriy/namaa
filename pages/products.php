@@ -34,7 +34,7 @@
     <a href="../home.html#about">About</a>
     <a href="contact.html">Contact</a>
     <!-- Shopping cart --><!-- Cart items count -->
-    <a href="pages/cart.html" class="cart-icon">🛒<span id="cart-count">0</span></a>
+    <a href="cart.html" class="cart-icon">🛒<span id="cart-count">0</span></a>
     <a href="admin/admin-login.php">Login</a>
   </nav>
 </header>
