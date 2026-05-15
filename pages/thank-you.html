@@ -1,93 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Character encoding -->
   <meta charset="UTF-8" />
+  <!-- Responsive design for mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Page title -->
   <title>Namā | Thank You</title>
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="../assets/css/style.css" />
-  
-   
- 
+  <!-- Google Fonts connection -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Poppins font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- script -->
+  <script src="../assets/js/cart-count.js" defer></script> 
+  <script src="../assets/js/thank-you.js" defer></script>
 </head>
 <body>
-
+    <!-- ================= HEADER SECTION ================= -->
+<header class="navbar">
+  <!-- Website logo -->
+  <div class="logo">
+    <img src="../assets/images/logo2.png" alt="logo">
+    <span>Namā</span>
+  </div>
+  <!-- Navigation links -->
+  <nav class="nav-links">
+    <a href="../home.html">Home</a>
+    <a href="products.php">Products</a>
+    <a href="../home.html#about">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="pages/cart.html" class="cart-icon">🛒<span id="cart-count">0</span></a>
+    <a href="admin/admin-login.php">Login</a>
+  </nav>
+</header>
+<!-- ================= THANK YOU SECTION ================= -->
 <main class="thank-you-container">
+    <!-- Thank you message -->
     <div style="padding-top: 50px;">
         <h1>Thank You!</h1>
         <p>Your order has been placed successfully.</p>
     </div>
-
+    <!-- ================= ORDER HISTORY SECTION ================= -->
     <div class="history-section-wrapper">
+        <!-- Section title -->
         <h2 class="main-history-title">My Orders</h2>
+        <!-- Order history will be displayed here -->
         <div id="orderHistoryList"></div>
     </div>
-
+    <!-- Back to home button -->
     <div style="margin-bottom: 50px;">
         <a href="../home.html" class="home-btn">Back to Home</a>
     </div>
 </main>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    function getCookie(name) {
-        let nameEQ = name + "=";
-        let ca = document.cookie.split(';');
-        for(let i=0; i < ca.length; i++) {
-            let c = ca[i].trim();
-            if (c.indexOf(nameEQ) == 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
-        }
-        return null;
-    }
-
-    const rawData = getCookie("nama_past_purchases");
-    
-    if (rawData) {
-        try {
-            const history = JSON.parse(rawData);
-            const listDiv = document.getElementById("orderHistoryList");
-
-            if (history && history.length > 0) {
-                // تجميع المنتجات حسب التاريخ
-                const groupedOrders = history.reduce((acc, item) => {
-                    if (!acc[item.date]) acc[item.date] = [];
-                    acc[item.date].push(item);
-                    return acc;
-                }, {});
-
-                let contentHtml = '';
-                
-                Object.keys(groupedOrders).reverse().forEach((date) => {
-                    const items = groupedOrders[date];
-                    const randomID = Math.floor(100000 + Math.random() * 900000);
-                    
-                    contentHtml += `
-                        <div class="order-history-card">
-                            <span class="order-id-display">🛒 Order #${randomID}</span>
-                            
-                            <div class="meta-row">
-                                <span class="status-capsule">Delivered Successfully</span>
-                                <span class="static-date-text">${date}</span>
-                            </div>
-
-                            <ul class="items-list-container">
-                                ${items.map(i => `
-                                    <li class="product-row-item">
-                                        <span style="margin-right:8px;">•</span> 
-                                        ${i.name} (x${i.quantity})
-                                    </li>
-                                `).join('')}
-                            </ul>
-                        </div>
-                    `;
-                });
-                listDiv.innerHTML = contentHtml;
-            }
-        } catch (err) {
-            console.error("History Render Error:", err);
-        }
-    }
-});
-</script>
-
+<footer role="contentinfo"><p>&copy; 2026 Namā. All rights reserved.</p></footer>
 </body>
 </html>

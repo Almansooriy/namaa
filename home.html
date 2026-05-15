@@ -1,80 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Character encoding -->
   <meta charset="UTF-8">
+  <!-- Responsive design for mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Page title -->
   <title>Namā | Home</title>
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Google Fonts connection -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Poppins font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- script -->
+  <script src="assets/js/cart-count.js" defer></script>
 </head>
-<script src="assets/js/cart-count.js"></script>
 <body>
-
+<!-- ================= HEADER SECTION ================= -->
 <header class="navbar" role="banner">
+  <!-- Website logo -->
   <div class="logo">
     <img src="assets/images/logo2.png" alt="Namā Logo">
     <span>Namā</span>
   </div>
-
+  <!-- Main navigation menu -->
   <nav class="nav-links" aria-label="Main Navigation">
       <a href="home.html">Home</a>
       <a href="pages/products.php">Products</a>
       <a href="#about">About</a>
       <a href="pages/contact.html">Contact</a>
-      <a href="pages/cart.html" class="cart-icon" aria-label="Shopping cart, contains 0 items">
-        <span aria-hidden="true">🛒</span>
-        <span id="cart-count">0</span>
-      </a>
+      <a href="pages/cart.html" class="cart-icon" aria-label="Shopping cart, contains 0 items"><span aria-hidden="true">🛒</span><span id="cart-count">0</span></a>
       <a href="pages/admin/admin-login.php">Login</a>
   </nav>
 </header>
-
-<main> <section class="hero" aria-labelledby="hero-title">
+<!-- ================= MAIN CONTENT ================= -->
+<main>
+  <!-- ================= HERO SECTION ================= -->
+  <section class="hero" aria-labelledby="hero-title">
+    <!-- Dark overlay -->
     <div class="overlay"></div>
+    <!-- Hero text content -->
     <div class="hero-content">
       <h1 id="hero-title">Bring Nature into Your Space</h1>
       <p>Explore flowers, indoor plants, and elegant gift packages in one place.</p>
+      <!-- Shop now button -->
       <a href="pages/products.php" class="btn">Shop Now</a>
     </div>
   </section>
-
+  <!-- ================= COLLECTION SECTION ================= -->
   <section class="section" aria-labelledby="collection-title">
+    <!-- Section heading -->
     <h2 class="section-title" id="collection-title">Our Collection</h2>
     <div class="grid">
+      <!-- Flowers category card -->
       <a href="pages/products.php#flowers" class="card">
-        <img src="https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=80" alt="Beautiful pink roses bouquet">
+        <img src="assets/images/Flowers.png" alt="Beautiful pink roses bouquet">
         <h3>Flowers</h3>
         <p>Elegant bouquets for every occasion.</p>
       </a>
-
+      <!-- Indoor plants category card -->
       <a href="pages/products.php#plants" class="card">
-        <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=900&q=80" alt="Green indoor succulent plant">
+        <img src="assets/images/Indoor.png" alt="Green indoor succulent plant">
         <h3>Indoor Plants</h3>
         <p>Bring life into your home.</p>
       </a>
-
+      <!-- Gift packages category card -->
       <a href="pages/products.php#packages" class="card">
-        <img src="https://images.unsplash.com/photo-1660549071389-962f436e1b5f?w=900&auto=format&fit=crop&q=60" alt="Luxury gift package with flowers and accessories">
+        <img src="assets/images/GiftPackages.png" alt="Luxury gift package with flowers and accessories">
         <h3>Gift Packages</h3>
         <p>Perfect combinations for special moments.</p>
       </a>
     </div>
   </section>
-
+  <!-- ================= ABOUT SECTION ================= -->
   <section class="about" id="about" aria-labelledby="about-title">
     <h2 id="about-title">About Namā</h2>
-    <p>
-      Namā is a modern botanical store offering flowers, indoor plants, and curated gift packages.
-      We aim to create a calm and elegant shopping experience inspired by nature.
-    </p>
+    <p>Namā is a modern botanical store offering flowers, indoor plants, and curated gift packages.We aim to create a calm and elegant shopping experience inspired by nature.</p>
   </section>
 </main>
-
-<footer role="contentinfo">
-  <p>&copy; 2026 Namā. All rights reserved.</p>
-</footer>
-
+<footer role="contentinfo"><p>&copy; 2026 Namā. All rights reserved.</p></footer>
 </body>
 </html>
