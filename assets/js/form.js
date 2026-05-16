@@ -74,20 +74,14 @@ if (mode === "delete") {
 
 // Check if image input and preview exist
 if (imageInput && preview) {
+  imageInput.addEventListener("change", function () {
+    const file = this.files[0];
 
-  // Set initial image preview
-  preview.src = imageInput.value || "";
-
-  // Listen for image changes
-  imageInput.addEventListener("input",function () {
-
-    // Update preview image
-    preview.src = this.value;
-
-    // Show or hide preview
-    preview.style.display = this.value ? "block" : "none";
+    if (file) {
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = "block";
     }
-  );
+  });
 }
 
 // ===============================

@@ -111,7 +111,10 @@ if (($mode == 'edit' || $mode == 'delete')) {
     <!-- ================= IMAGE PREVIEW ================= -->
     <?php if ($mode != 'add'): ?>
       <!-- Show existing image -->
-      <img id="preview" src="<?php echo htmlspecialchars($product['image'] ?? ''); ?>" alt="Preview" style="max-width:200px; display:block;">
+      <img id="preview"
+     src="/namaa/assets/images/<?php echo htmlspecialchars($product['image'] ?? ''); ?>"
+     alt="Preview"
+     style="max-width:200px; display:block;">
     <?php else: ?>
       <!-- Empty preview for add mode -->
       <img id="preview" src="" alt="Preview" style="max-width:200px; display:none;">

@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `namaa`
 --
-CREATE DATABASE IF NOT EXISTS `namaa` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `namaa` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `namaa`;
 
 -- --------------------------------------------------------
@@ -33,7 +33,7 @@ CREATE TABLE `admins` (
   `admin_id` int NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admins`
@@ -56,7 +56,7 @@ INSERT INTO `admins` (`admin_id`, `email`, `password`) VALUES
 CREATE TABLE `categories` (
   `category_id` int NOT NULL,
   `category_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `categories`
@@ -81,7 +81,7 @@ CREATE TABLE `products` (
   `stock` int NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `category_id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
