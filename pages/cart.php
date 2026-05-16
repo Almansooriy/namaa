@@ -165,7 +165,7 @@ session_start();
           </div>
         </div>
         <!-- Complete order button -->
-        <button type="submit" class="checkout-btn" form="combinedCheckoutForm">Complete Order</button>
+        <button onclick="window.location.href='thank-you.php'" type="submit" class="checkout-btn" form="combinedCheckoutForm">Complete Order</button>
         <!-- Delete all cart items button -->
         <button onclick="confirmClearCart()" class="delete-all-btn" aria-label="Clear all items from cart">Delete All</button>
         <!-- Continue shopping link -->
