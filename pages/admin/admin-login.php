@@ -27,11 +27,11 @@
   </div>
   <!-- Navigation links -->
   <nav class="nav-links">
-    <a href="../../home.html">Home</a>
+    <a href="../../home.php">Home</a>
     <a href="../products.php">Products</a>
-    <a href="../../home.html#about">About</a>
-    <a href="../contact.html">Contact</a>
-    <a href="../cart.html" class="cart-icon">🛒<span id="cart-count">0</span></a>
+    <a href="../../home.php#about">About</a>
+    <a href="../contact.php">Contact</a>
+    <a href="../cart.php" class="cart-icon">🛒<span id="cart-count">0</span></a>
     <a href="admin-login.php">Login</a>
   </nav>
 </header>

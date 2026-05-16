@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,12 +30,18 @@
   </div>
   <!-- Main navigation menu -->
   <nav class="nav-links" aria-label="Main Navigation">
-      <a href="home.html">Home</a>
+      <a href="home.php">Home</a>
       <a href="pages/products.php">Products</a>
       <a href="#about">About</a>
-      <a href="pages/contact.html">Contact</a>
-      <a href="pages/cart.html" class="cart-icon" aria-label="Shopping cart, contains 0 items"><span aria-hidden="true">🛒</span><span id="cart-count">0</span></a>
-      <a href="pages/admin/admin-login.php">Login</a>
+      <a href="pages/contact.php">Contact</a>
+      <a href="pages/cart.php" class="cart-icon" aria-label="Shopping cart, contains 0 items"><span aria-hidden="true">🛒</span><span id="cart-count">0</span></a>
+      
+      <?php if(isset($_SESSION['admin_id'])): ?>
+        <a href="pages/admin/admin-dashboard.php">Dashboard</a>
+        <a href="backend/logout.php">Logout</a>
+      <?php else: ?>
+        <a href="pages/admin/admin-login.php">Login</a>
+        <?php endif; ?>
   </nav>
 </header>
 <!-- ================= MAIN CONTENT ================= -->

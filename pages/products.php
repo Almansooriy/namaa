@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,13 +32,19 @@
   </div>
   <!-- Navigation links -->
   <nav class="nav-links">
-    <a href="../home.html">Home</a>
+    <a href="../home.php">Home</a>
     <a href="products.php">Products</a>
-    <a href="../home.html#about">About</a>
-    <a href="contact.html">Contact</a>
+    <a href="../home.php#about">About</a>
+    <a href="contact.php">Contact</a>
     <!-- Shopping cart --><!-- Cart items count -->
-    <a href="cart.html" class="cart-icon">🛒<span id="cart-count">0</span></a>
-    <a href="admin/admin-login.php">Login</a>
+    <a href="cart.php" class="cart-icon">🛒<span id="cart-count">0</span></a>
+          
+    <?php if(isset($_SESSION['admin_id'])): ?>  
+      <a href="admin/admin-dashboard.php">Dashboard</a>
+      <a href="../backend/logout.php">Logout</a>
+    <?php else: ?>
+      <a href="admin/admin-login.php">Login</a>
+      <?php endif; ?>
   </nav>
 </header>
 <!-- ================= HERO SECTION ================= -->

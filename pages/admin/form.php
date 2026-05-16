@@ -80,7 +80,7 @@ if (($mode == 'edit' || $mode == 'delete')) {
   </div>
   <!-- Navigation -->
   <nav class="nav-links">
-    <a href="../../home.html">Home</a>
+    <a href="../../home.php">Home</a>
     <a href="../products.php">Products</a>
     <a href="admin-dashboard.php">Dashboard</a>
   </nav>
